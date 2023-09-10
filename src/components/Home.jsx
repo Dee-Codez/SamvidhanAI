@@ -5,7 +5,7 @@ import { Environment } from '@react-three/drei';
 
 import Typewriter from './Typewriter'
 import preamble from'../assets/preamble.jpg'
-import emblem from "../assets/emblem.png"
+import emblem from "../assets/Emblem.png"
 
 
 const Home = () => {
