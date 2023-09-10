@@ -5,6 +5,7 @@ import { Environment } from '@react-three/drei';
 
 import Typewriter from './Typewriter'
 import preamble from'../assets/preamble.jpg'
+import emblem from "../assets/emblem.png"
 
 
 const Home = () => {
@@ -28,15 +29,20 @@ const Home = () => {
 
   return (
     <div className='relative mb-[10vh]'>
-      <div className='text-5xl lg:text-7xl font-bold italic font-poppins flex justify-center mt-[30vh] shadow-blue-500 hover:text-6xl hover:lg:text-8xl transition-all duration-300'>
-        SamvidhanAI
+      <div className='text-5xl lg:text-7xl font-bold italic font-poppins flex justify-center shadow-blue-500 hover:text-6xl hover:lg:text-8xl transition-all duration-300'>
+        <div className='mt-[10vh]'>
+            SamvidhanAI
+        </div>
       </div>
-      <div className='flex justify-center mt-[30vh] gap-[15%]'>
+      <div className='absolute mt-[40vh] opacity-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blend-overlay z-0  text-white'>
+        <img src={emblem} width={400} className='z-1' />
+      </div>
+      <div className='flex justify-center mt-[40vh] gap-[15%]'>
         <Link to='/LLBGPT'>
-          <button className='bg-white bg-opacity-10 hover:bg-opacity-100 hover:text-black text-white rounded-md p-5 text-lg duration-300'>LLB GPT</button>
+            <div className='bg-white bg-opacity-10 hover:bg-opacity-100 hover:text-black z-99 text-white rounded-md p-5 text-lg duration-300'>LLB GPT</div>
         </Link>
         <Link to='/DocDrafter'>
-            <button className='bg-white bg-opacity-10 hover:bg-opacity-100 hover:text-black text-white rounded-md p-5 text-lg duration-300'>Doc Drafter</button>
+            <div className='bg-white bg-opacity-10 hover:bg-opacity-100 hover:text-black z-99 text-white rounded-md p-5 text-lg duration-300'>Doc Drafter</div>
         </Link>
       </div>
       <div className='mt-[30vh] font-[500] font-poppins'>
@@ -50,9 +56,9 @@ const Home = () => {
               <Typewriter speed={87} repeat={0} text="The Constitution of India, adopted in 1950, is the supreme law of the country. It provides the framework for governance, defining the structure of government, fundamental rights, and duties of citizens. India's constitution is known for its democratic principles, secularism, and commitment to social justice. It guarantees individual freedoms and equality under the law. It also establishes a federal structure with a division of powers between the central and state governments. The Constitution of India is one of the world's lengthiest written constitutions, reflecting the nation's diverse culture, values, and commitment to democracy."/>
             </div>
           </div>
-          
         </div>
       </div>
+      
     </div>
     
   )
