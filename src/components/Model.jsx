@@ -1,30 +1,16 @@
-import {Canvas} from '@react-three/fiber'
-import {FC, useEffect, useState} from 'react'
-import {BufferGeometry} from 'three'
-import {STLLoader} from 'three/examples/jsm/loaders/STLLoader'
+import React from "react";
+import { useGLTF } from "@react-three/drei";
 
-interface Props {
-  fileUrl: "../assets/emblem3d.stl"
+
+function Model(props) {
+  const model = useGLTF("scifi_girl_v.01.glb")
+
+  return ( 
+    <mesh>
+      <primitive object={model.scene}/>
+    </mesh>
+
+   );
 }
 
-const Model: FC<Props> = ({fileUrl}) => {
-  const [geometry, setGeometry] = useState<BufferGeometry>()
-
-  useEffect(() => {
-    const stlLoader = new STLLoader()
-    stlLoader.load(fileUrl, geo => {
-      setGeometry(geo)
-    })
-  }, [])
-
-  return (
-    <Canvas>
-      <ambientLight />
-      <mesh geometry={geometry}>
-        <meshStandardMaterial color="#cccccc" />
-      </mesh>
-    </Canvas>
-  )
-}
-
-export default Model
+export default Model;
