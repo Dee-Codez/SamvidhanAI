@@ -34,8 +34,8 @@ const Home = () => {
             SamvidhanAI
         </div>
       </div>
-      <div className='absolute mt-[40vh] opacity-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blend-overlay z-0  text-white'>
-        <img src={emblem} width={400} className='z-1' />
+      <div className='absolute mt-[40vh] opacity-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blend-overlay -z-50  text-white'>
+        <img src={emblem} width={400} />
       </div>
       <div className='flex justify-center mt-[40vh] gap-[15%]'>
         <Link to='/LLBGPT'>
