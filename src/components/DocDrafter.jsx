@@ -4,6 +4,8 @@ import {IoIosBusiness} from 'react-icons/io'
 import {RiIndeterminateCircleFill} from 'react-icons/ri'
 import {LiaFileInvoiceDollarSolid} from 'react-icons/lia'
 import {FaHandshakeSimple} from 'react-icons/fa6'
+import {MdKeyboardBackspace} from 'react-icons/md'
+import {BiSolidPurchaseTag} from 'react-icons/bi'
 
 import Typewriter from './Typewriter'
 
@@ -27,36 +29,43 @@ const DocDrafter = () => {
                         </div>
                     </Link>
                     <Link target='_blank' to="https://www.keka.com/media/2021/06/18-Employee-Termination-Letter-Samples.pdf">
-                        <div className='p-6 font-poppins rounded-xl border-white border-2 hover:bg-[#3b3b3b] hover:p-10 duration-300 min-h-full shadow-lg shadow-[#5c5c5c]'>
+                        <div className='p-6 font-poppins rounded-xl border-white border-2 hover:bg-[#3b3b3b] hover:p-10 hover:scale-110 duration-300 min-h-full shadow-lg shadow-[#5c5c5c]'>
                             <RiIndeterminateCircleFill size={40} className='mb-5'/>
                             <h5 className='mb-5 text-2xl font-bold tracking-[.25rem] text-white'>Termination Letter</h5>
                             <p className='tracking-[.3rem] leading-7'>A letter to terminate an agreement</p>
                         </div>
                     </Link>
                     <Link target='_blank' to="https://cbic-gst.gov.in/aces/Documents/draft-formats-under-invoice-rules.pdf">
-                        <div className='p-6 font-poppins rounded-xl border-white border-2 hover:bg-[#3b3b3b] hover:p-10 duration-300 min-h-full shadow-lg shadow-[#5c5c5c]'>
+                        <div className='p-6 font-poppins rounded-xl border-white border-2 hover:bg-[#3b3b3b] hover:p-10 hover:scale-110 duration-300 min-h-full shadow-lg shadow-[#5c5c5c]'>
                             <LiaFileInvoiceDollarSolid size={40} className='mb-5'/>
                             <h5 className='mb-5 text-2xl font-bold tracking-[.25rem] text-white'>GST Invoice</h5>
                             <p className='tracking-[.3rem] leading-7'>Receipt Of Sale With GST Number</p>
                         </div>
                     </Link>
-                    
-                    <div className='p-6 font-poppins rounded-xl border-white border-2 hover:bg-[#3b3b3b] hover:p-10 duration-300 shadow-lg shadow-[#5c5c5c]  max-w-xl'>
-                        <FaHandshakeSimple size={40} className='mb-5'/>
-                        <h5 className='mb-5 text-2xl font-bold tracking-[.25rem] text-white'>Shareholder Agreement</h5>
-                        <p className='tracking-[.3rem] leading-7'>A Draft Contract Between The Shareholders of a Company</p>
-                    </div>
-                    <div className='p-6 font-poppins rounded-xl border-white border-2 hover:bg-[#3b3b3b] hover:p-10 duration-300 shadow-lg shadow-[#5c5c5c]'>
-                        <IoIosBusiness size={40} className='mb-5'/>
-                        <h5 className='mb-5 text-2xl font-bold tracking-[.25rem] text-white'>Business Registration</h5>
-                        <p className='tracking-[.3rem] leading-7'>Form For Registering Your Company</p>
-                    </div>
-
-                    
+                    <Link target='_blank' to="https://www.startupindia.gov.in/content/dam/invest-india/Templates/public/Tools_templates/internal_templates/startup_founders_sha_sample.pdf">
+                        <div className='p-6 font-poppins rounded-xl border-white border-2 hover:bg-[#3b3b3b] hover:p-10 hover:scale-110 duration-300 min-h-full shadow-lg shadow-[#5c5c5c]  max-w-xl'>
+                            <FaHandshakeSimple size={40} className='mb-5'/>
+                            <h5 className='mb-5 text-2xl font-bold tracking-[.25rem] text-white'>Shareholder Agreement</h5>
+                            <p className='tracking-[.3rem] leading-7'>A Draft Contract Between The Shareholders of a Company</p>
+                        </div>
+                    </Link>
+                    <Link target='_blank' to="https://www.smartsheet.com/sites/default/files/IC-Blank-Purchase-Order-Form-9181-PDF.pdf">
+                        <div className='p-6 font-poppins rounded-xl border-white border-2 hover:bg-[#3b3b3b] hover:p-10 hover:scale-110 duration-300 min-h-full shadow-lg shadow-[#5c5c5c] max-w-xl'>
+                            <BiSolidPurchaseTag size={40} className='mb-5'/>
+                            <h5 className='mb-5 text-2xl font-bold tracking-[.25rem] text-white'>Purchase Order</h5>
+                            <p className='tracking-[.3rem] leading-7'>Official Order For A Business-to-Business Bulk Purchase</p>
+                        </div>
+                    </Link>
                 </div>
             </div>
 
         </div>
+        <Link to="/">
+            <div className='flex items-center gap-3 mb-[8vh] bg-white bg-opacity-10 hover:bg-opacity-100 hover:text-black text-white rounded-md p-5 text-lg duration-300'>
+                <MdKeyboardBackspace />
+                <p>Back</p>
+            </div>
+        </Link>
       </div>
 
     </div>
