@@ -76,7 +76,7 @@ const LLBGPT = () => {
         event.preventDefault();
         setIsLoading(true);
         if(query !== ""){
-            axios.post("http://127.0.0.1:5000/api/ml", {"prompt": query})
+            axios.post("https://samvidhan-ai.vercel.app/api/ml", {"prompt": query})
             .then((response) => {
               console.log(response);
               
