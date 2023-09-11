@@ -3,6 +3,7 @@ import { useNavigate, Link, NavLink } from 'react-router-dom';
 import {Canvas} from '@react-three/fiber';
 import { Environment } from '@react-three/drei';
 
+
 import Typewriter from './Typewriter'
 import preamble from'../assets/preamble.jpg'
 import emblem from "../assets/Emblem.png"

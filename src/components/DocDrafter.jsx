@@ -7,6 +7,7 @@ import {FaHandshakeSimple} from 'react-icons/fa6'
 import {MdKeyboardBackspace} from 'react-icons/md'
 import {BiSolidPurchaseTag} from 'react-icons/bi'
 
+
 import Typewriter from './Typewriter'
 
 const DocDrafter = () => {
