@@ -1,9 +1,81 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom';
+import {MdKeyboardBackspace} from 'react-icons/md'
+import { OpenAI } from "langchain/llms/openai";
+import { ChatOpenAI } from "langchain/chat_models/openai";
+import { HumanMessage, ChatMessage, SystemMessage } from "langchain/schema";
+
+
+import Typewriter from './Typewriter'
 
 const LLBGPT = () => {
+    const key = import.meta.env.VITE_OPENAI_API_KEY;
+    console.log(key);
+    const llm = new OpenAI({
+        openAIApiKey: "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"
+      });
+    
+    const [pred, setPred] = useState(false);
+
+    const resp = llm.predictMessages([
+        new HumanMessage("Translate this sentence from English to French. I love programming.")
+    ]);
+
+    const text = ["Your Personal Fine-Tuned GPT For Law",3000,"Your Personal AI Law Chatbot",3000];
+
+    function refreshPage() {
+        window.location.reload(false);
+    }
+
+    useEffect(() => {
+        if(resp){
+            console.log(resp);
+            setPred(true);
+        }
+      }, [pred])
+    
   return (
     <div>
-      Hello World
+      <div className='flex flex-col justify-center items-center'>
+        <p className='text-5xl p-2 mt-[10vh] font-poppins font-bold italic'>LLBGPT</p>
+        <div className='text-2xl mt-[10vh] font-poppins tracking-[.3rem] text-center m-5 '>
+            <Typewriter text={text} repeat={Infinity} speed={80} />
+        </div>
+        <div className=' border-2 md:scale-100 scale-50 mt-[10vh] shadow-[#111111] shadow-xl border-[#6b6b6b] p-20 bg-white bg-opacity-5 rounded-lg'>
+
+            <div className='text-white flex justify-center items-center gap-5 -mt-[40px] -ml-10'>
+                <p className='text-lg md:text-2xl md:flex flex-row'>Enter Prompt </p>
+                <p className='text-2xl'>:</p>
+                <div className=''>
+                    <input className='p-4 rounded-md' type="text" />
+                </div>
+                <div className='-mt-[5px]'>
+                    <div className='flex p-3 items-center bg-white bg-opacity-10 hover:bg-opacity-100 hover:text-black text-white rounded-md duration-300'>Submit</div>
+                </div>
+            </div>
+            <div className='flex text-2xl flex-row mt-20'>
+                <p>Response : </p>
+                <div className='pl-5'>
+                    {resp && (
+                        <Typewriter text={resp} repeat={1} speed={20} />
+                    )}
+                </div>
+            </div>
+            <div className='flex justify-center'>
+                <div className='mt-[10vh]'>
+                    <Link to="/LLBGPT" onClick={refreshPage}>
+                        <div className='flex text-2xl p-5 items-center bg-white bg-opacity-10 hover:bg-opacity-100 hover:text-black text-white rounded-md duration-300'>Reset</div>
+                    </Link>
+                </div>
+            </div>
+        </div>
+        <Link to="/">
+            <div className='flex items-center gap-3 mt-[5vh] mb-[10vh] bg-white bg-opacity-10 hover:bg-opacity-100 hover:text-black text-white rounded-md p-5 text-lg duration-300'>
+                <MdKeyboardBackspace />
+                <p>Back</p>
+            </div>
+        </Link>
+      </div>
     </div>
   )
 }
