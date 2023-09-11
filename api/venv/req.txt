@@ -4,4 +4,4 @@ scikit-learn
 openai
 langchain
 flask-cors
-gunicorn
+gunicorn==19.7.1
