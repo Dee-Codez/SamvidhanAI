@@ -1,0 +1,7 @@
+flask
+python-dotenv
+scikit-learn
+openai
+langchain
+flask-cors
+gunicorn
