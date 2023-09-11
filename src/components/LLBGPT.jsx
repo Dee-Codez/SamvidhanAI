@@ -64,7 +64,12 @@ const LLBGPT = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     const handleInputChange = (event) => {
-        setQuery(event.target.value)
+        if(event.key === 'Enter' && query) {
+            handleSubmit(event)
+        }else{
+            setQuery(event.target.value)
+        }
+        
     }
 
     const handleSubmit = async (event) => {
@@ -97,16 +102,16 @@ const LLBGPT = () => {
         <div className='text-2xl mt-[10vh] font-poppins tracking-[.3rem] text-center m-5 '>
             <Typewriter text={text} repeat={Infinity} speed={80} />
         </div>
-        <div className=' border-2 md:scale-100 scale-50 mt-[10vh] shadow-[#111111] shadow-xl border-[#6b6b6b] p-20 bg-white bg-opacity-5 rounded-lg ml-[5vw] mr-[5vw]'>
+        <div className=' border-2 md:scale-100 mt-[10vh] shadow-[#111111] shadow-xl border-[#6b6b6b] p-20 bg-white bg-opacity-5 rounded-lg ml-[5vw] mr-[5vw]'>
 
             <div className='text-white flex justify-center items-center gap-5 -mt-[40px] -ml-10'>
                 <p className='text-lg md:text-2xl md:flex flex-row'>Enter Prompt </p>
                 <p className='text-2xl'>:</p>
                 <div className=''>
-                    <input onChange={handleInputChange} className='p-4 rounded-md' type="text" />
+                    <input onChange={handleInputChange} onKeyUp={handleInputChange} className='p-4 rounded-md' type="text" />
                 </div>
                 <div className='-mt-[5px]'>
-                    <button onClick={handleSubmit} type='submit' disabled={!query || isLoading} className='flex p-3 items-center bg-white bg-opacity-10 hover:bg-opacity-100 hover:text-black text-white rounded-md duration-300'>{isLoading? "Loading.." : "Submit"}</button>
+                    <button onClick={handleSubmit} type='submit' className={`${(!query || isLoading) ? "opacity-30" : "opacity-100"}  flex p-3 items-center bg-white bg-opacity-10 hover:bg-opacity-100 hover:text-black text-white rounded-md duration-300`}>{isLoading? "Loading.." : "Submit"}</button>
                 </div>
             </div>
             <div className='flex text-2xl flex-row mt-20' key={answer}>
@@ -114,7 +119,7 @@ const LLBGPT = () => {
                 <p className='ml-1'> :</p>
                 <div className=''>
                     {answer && (
-                        <div className='pl-3 text-center italic leading-9'>
+                        <div className='pl-3 text-center italic leading-'>
                             <Typewriter text={answer} repeat={1} speed={50} />
                         </div>
                         
