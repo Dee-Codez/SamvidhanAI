@@ -21,6 +21,7 @@ const Typewriter = ({text, repeat, speed}) => {
         wrapper="span"
         speed={speed}
         repeat={repeat}
+        deletionSpeed={speed}
         style={{display: 'inline-block' }}
       />
     </div>
