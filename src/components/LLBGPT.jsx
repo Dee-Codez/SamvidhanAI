@@ -76,7 +76,7 @@ const LLBGPT = () => {
         event.preventDefault();
         setIsLoading(true);
         if(query !== ""){
-            axios.post("/api/ml", {"prompt": query})
+            axios.post("http://localhost:5000/api/ml", {"prompt": query})
             .then((response) => {
               console.log(response);
               
