@@ -1,8 +1,0 @@
-flask
-gunicorn
-waitress
-python-dotenv
-scikit-learn
-openai
-langchain
-flask-cors
