@@ -1,8 +1,15 @@
-# React + Vite
+# SamvidhanAI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Comprehensive AI Based Legal Chat Bot with Documentation Guide
+</br>
 
-Currently, two official plugins are available:
+## Tech Stack : React + Vite, Flask, Python
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Screenshots:
+
+#### <ins>1.Home Page</ins>
+
+![Screenshot 2023-10-31 185323](https://github.com/Dee-Codez/SamvidhanAI/assets/114132607/aca78e7d-295c-4484-a39b-f4772b0e7f6f)
+
+#### <ins>2.ChatBot Page</ins>
+
