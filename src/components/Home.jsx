@@ -36,9 +36,9 @@ const Home = () => {
             SamvidhanAI
         </div>
       </div>
-      <div className='absolute mt-[40vh] opacity-70 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blend-overlay -z-50 overflow-hidden text-white'>
+      <div className='absolute mt-[40vh] opacity-20 md:opacity-90 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blend-overlay -z-50 overflow-hidden text-white'>
         {/* <Spline scene="https://prod.spline.design/MONLQBPmoTPbTsDZ/scene.splinecode" /> */}
-        <Spline className='hover:pause' scene="https://prod.spline.design/IEnPKKTqk3lQ-3FE/scene.splinecode" />
+        <Spline scene="https://prod.spline.design/IEnPKKTqk3lQ-3FE/scene.splinecode" />
         {/* <img src={emblem} width={400} /> */}
       </div>
       <div className='flex justify-center mt-[40vh] gap-[15%]'>
