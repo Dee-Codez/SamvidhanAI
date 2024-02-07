@@ -8,7 +8,6 @@ import axios from 'axios';
 // import { OpenAI } from "langchain/llms/openai";
 // import {ChatOpenAI} from "langchain/chat_models/openai"
 
-
 import Typewriter from './Typewriter'
 
 const LLBGPT = () => {
@@ -59,6 +58,9 @@ const LLBGPT = () => {
     //     llm: model, prompt: dynamicPromptTemplate
     // });
 
+
+    const API_KEY = import.meta.env.VITE_CHATNBX_API_KEY;
+    
     const [query, setQuery] = useState("");
     const [answer, setAnswer] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -76,17 +78,42 @@ const LLBGPT = () => {
         event.preventDefault();
         setIsLoading(true);
         if(query !== ""){
-            axios.post("https://samvidhanai-backend.onrender.com//api", {"prompt": query})
-            .then((response) => {
-              console.log(response);
+        //     axios.post("https://samvidhanai-backend.onrender.com//api", {"prompt": query})
+        //     .then((response) => {
+        //       console.log(response);
               
-              setAnswer(response['data']['answer']);
-              setIsLoading(false);
+        //       setAnswer(response['data']['answer']);
+        //       setIsLoading(false);
+        //     })
+        //     .catch((err) => {
+        //       console.log(err);
+        //   setAnswer("Error")
+        //     });
+        const response = await fetch("https://chat.tune.app/api/chat/completions", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": API_KEY,
+            },
+            body: JSON.stringify({
+              messages: [
+                {
+                    role: "system",
+                    content: "You are SamvidhanAI, An AI Assistant referring to the Indian Constitution"
+                },
+                {
+                  role: "user",
+                  content: query
+                }
+              ],
+              model: "mixtral-8x7b-inst-v0-1-32k",
+              max_tokens: 1000
             })
-            .catch((err) => {
-              console.log(err);
-          setAnswer("Error")
-            });
+          });
+          console.log(response);
+          const data = await response.json();
+          setAnswer(data.choices.message.content);
+          setIsLoading(false);
         }
     }
     const text = ["Your Personal AI Law Chatbot",3000,"Your Personal Fine-Tuned GPT For Law",3000];
