@@ -78,42 +78,65 @@ const LLBGPT = () => {
         event.preventDefault();
         setIsLoading(true);
         if(query !== ""){
-        //     axios.post("https://samvidhanai-backend.onrender.com//api", {"prompt": query})
-        //     .then((response) => {
-        //       console.log(response);
+            axios.post("https://samvidhanai-backend.onrender.com//api", {"prompt": query})
+            .then((response) => {
+              console.log(response);
               
-        //       setAnswer(response['data']['answer']);
-        //       setIsLoading(false);
-        //     })
-        //     .catch((err) => {
-        //       console.log(err);
-        //   setAnswer("Error")
-        //     });
-        const response = await fetch("https://chat.tune.app/api/chat/completions", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "Authorization": API_KEY,
-            },
-            body: JSON.stringify({
-              messages: [
-                {
-                    role: "system",
-                    content: "You are SamvidhanAI, An AI Assistant referring to the Indian Constitution"
-                },
-                {
-                  role: "user",
-                  content: query
-                }
-              ],
-              model: "mixtral-8x7b-inst-v0-1-32k",
-              max_tokens: 1000
+              setAnswer(response['data']['answer']);
+              setIsLoading(false);
             })
-          });
-          console.log(response);
-          const data = await response.json();
-          setAnswer(data.choices.message.content);
-          setIsLoading(false);
+            .catch((err) => {
+              console.log(err);
+          setAnswer("Error")
+            });
+
+            // const body = {
+            //     "messages": [
+            //       {
+            //           "role": "system",
+            //           "content": "You are SamvidhanAI, An AI Assistant referring to the Indian Constitution"
+            //       },
+            //       {
+            //         "role": "user",
+            //         "content": query,
+            //       }
+            //     ],
+            //     "model": "mixtral-8x7b-inst-v0-1-32k",
+            //     "max_tokens": 1000
+            // }
+            // const headers ={
+            //     'Authorization':API_KEY,
+            // }
+
+            // const response = await axios.post("https://chat.tune.app/api/chat/completions", body, {headers}); 
+
+        // const response = await fetch("https://chat.tune.app/api/chat/completions", {
+        //     method: "POST",
+        //     mode : "cors",
+        //     headers: {
+        //       "Content-Type": "application/json",
+        //       "Authorization": API_KEY,
+        //     },
+        //     body: JSON.stringify({
+        //       messages: [
+        //         {
+        //             role: "system",
+        //             content: "You are SamvidhanAI, An AI Assistant referring to the Indian Constitution"
+        //         },
+        //         {
+        //           role: "user",
+        //           content: query
+        //         }
+        //       ],
+        //       model: "mixtral-8x7b-inst-v0-1-32k",
+        //       max_tokens: 1000
+        //     })
+        //   });
+          
+        //   const data = await response.json();
+        //   console.log(data);
+        //   setAnswer(data.choices[0].message.content);
+        //   setIsLoading(false);
         }
     }
     const text = ["Your Personal AI Law Chatbot",3000,"Your Personal Fine-Tuned GPT For Law",3000];
