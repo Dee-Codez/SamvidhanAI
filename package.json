@@ -26,6 +26,7 @@
     "react-animated-cursor": "^2.8.1",
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
+    "react-loader-spinner": "^6.1.6",
     "react-refresh": "^0.14.0",
     "react-router": "^6.15.0",
     "react-router-dom": "^6.15.0",

@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom';
 import {MdKeyboardBackspace} from 'react-icons/md'
 import axios from 'axios';
+import {InfinitySpin} from 'react-loader-spinner'
 
 // import {FewShotPromptTemplate, LengthBasedExampleSelector, PromptTemplate } from "langchain/prompts"
 // import { LLMChain } from 'langchain/chains';
@@ -79,6 +80,11 @@ const LLBGPT = () => {
         setIsLoading(true);
         if(query !== ""){
             axios.post("https://samvidhanai-backend.onrender.com//api", {"prompt": query})
+            .catch(function(error) {
+                if(error.response){
+                    setAnswer(error + "\n Please try again after refreshing");
+                }
+            })
             .then((response) => {
               console.log(response);
               
@@ -167,19 +173,30 @@ const LLBGPT = () => {
                     <button onClick={handleSubmit} type='submit' className={`${(!query || isLoading) ? "opacity-30" : "opacity-100"}  flex p-3 items-center bg-white bg-opacity-10 hover:bg-opacity-100 hover:text-black text-white rounded-md duration-300`}>{isLoading? "Loading.." : "Submit"}</button>
                 </div>
             </div>
+            
             <div className='flex md:flex-row md:gap-0 gap-5 md:text-2xl flex-col justify-center text-lg mt-20' key={answer}>
-                <div className='flex justify-center'>
-                    <p className='font-bold '>Response  </p>
-                    <p className='ml-1'> :</p>
-                </div>
-                <div className=''>
+                {isLoading && (
+                    <div className='text-white flex justify-center'>
+                        <InfinitySpin
+                            visible={true}
+                            width="200"
+                            color="#ffffff"
+                            ariaLabel="infinity-spin-loading"
+                        />
+                    </div>
+                )}
                     {answer && (
+                        <>
+                        <div className='flex justify-center'>
+                            <p className='font-bold '>Response  </p>
+                            <p className='ml-1'> :</p>
+                        </div>
                         <div className='pl-1 text-center italic leading-'>
                             <Typewriter text={answer} repeat={1} speed={50} />
                         </div>
-                        
+                        </> 
                     )}
-                </div>
+                
             </div>
             <div className='flex justify-center'>
                 <div className='mt-[10vh]'>
