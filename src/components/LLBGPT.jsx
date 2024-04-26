@@ -12,54 +12,7 @@ import {InfinitySpin} from 'react-loader-spinner'
 import Typewriter from './Typewriter'
 
 const LLBGPT = () => {
-    // const model = new ChatOpenAI({
-    //     openAIApiKey: import.meta.env.VITE_CHATNBX_API_KEY,
-    //     openAIApiBase: "https://chat.nbox.ai/api/",
-    //     modelName: "llama-2-chat-13b-4k",
-    //     temperature: 0.8,
-    //   });
     
-    // const exampleTemplate = `User: {query}
-    // AI : {answer}`;
-    
-    // const examplePrompt = new PromptTemplate({
-    //     template: exampleTemplate,
-    //     inputVariables: ["query", "answer"]
-    // })
-    
-    // const examples =[
-    //     {
-    //         query: "Are you a robot?",
-    //         answer:"I prefer the term highly advanced AI Lawyer. But yes, I'm a robot in layman terms"
-    //     },
-    //     {
-    //         query: "Tell me what you can do",
-    //         answer:"I can provide you with necessary information regarding the law"
-    //     }
-    // ];
-    
-    // const exampleSelector = new LengthBasedExampleSelector({
-    //     example: examples,
-    //     examplePrompt: examplePrompt,
-    //     maxLength: 100,
-    // });
-    
-    // const dynamicPromptTemplate = new FewShotPromptTemplate({
-    //     exampleSelector: exampleSelector,
-    //     examplePrompt: prompt,
-    //     prefix: `The following are exerpts from converstations with an AI
-    //     assistant. The assistant is only formal, quick witted and acts much like a lawyer
-    //     producing informative law based responses to users questions. Here are some examples:\n`,
-    // suffix: "\nUser: {query}\nAnswer: ",
-    // inputVariables: ["query"],
-    // exampleSeparator: "\n\n"
-    // });
-    
-    // const chain = new LLMChain({
-    //     llm: model, prompt: dynamicPromptTemplate
-    // });
-
-
     const API_KEY = import.meta.env.VITE_CHATNBX_API_KEY;
     
     const [query, setQuery] = useState("");
@@ -68,11 +21,38 @@ const LLBGPT = () => {
 
     const handleInputChange = (event) => {
         if(event.key === 'Enter' && query) {
-            handleSubmit(event)
+            handleviaFetch(event)
         }else{
             setQuery(event.target.value)
         }
         
+    }
+
+    const handleviaFetch = async (event) => {
+        event.preventDefault();
+        setAnswer("");
+        if(query !== "") {
+            setIsLoading(true);
+            try {
+                const response = await fetch("https://samvidhan-ai-express-backend.vercel.app/api/chat/completions", {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify({
+                        prompt: query
+                      })
+                });
+                const data = await response.json();
+                console.log(data);
+                setAnswer(data['choices'][0]['message']['content']);
+                setIsLoading(false);
+            } catch (error) {
+                console.log(error);
+                setAnswer("Error")
+                setIsLoading(false);
+            }
+        }
     }
 
     const handleSubmit = async (event) => {
@@ -96,53 +76,6 @@ const LLBGPT = () => {
           setAnswer("Error")
             });
 
-            // const body = {
-            //     "messages": [
-            //       {
-            //           "role": "system",
-            //           "content": "You are SamvidhanAI, An AI Assistant referring to the Indian Constitution"
-            //       },
-            //       {
-            //         "role": "user",
-            //         "content": query,
-            //       }
-            //     ],
-            //     "model": "mixtral-8x7b-inst-v0-1-32k",
-            //     "max_tokens": 1000
-            // }
-            // const headers ={
-            //     'Authorization':API_KEY,
-            // }
-
-            // const response = await axios.post("https://chat.tune.app/api/chat/completions", body, {headers}); 
-
-        // const response = await fetch("https://chat.tune.app/api/chat/completions", {
-        //     method: "POST",
-        //     mode : "cors",
-        //     headers: {
-        //       "Content-Type": "application/json",
-        //       "Authorization": API_KEY,
-        //     },
-        //     body: JSON.stringify({
-        //       messages: [
-        //         {
-        //             role: "system",
-        //             content: "You are SamvidhanAI, An AI Assistant referring to the Indian Constitution"
-        //         },
-        //         {
-        //           role: "user",
-        //           content: query
-        //         }
-        //       ],
-        //       model: "mixtral-8x7b-inst-v0-1-32k",
-        //       max_tokens: 1000
-        //     })
-        //   });
-          
-        //   const data = await response.json();
-        //   console.log(data);
-        //   setAnswer(data.choices[0].message.content);
-        //   setIsLoading(false);
         }
     }
     const text = ["Your Personal AI Law Chatbot",3000,"Your Personal Fine-Tuned GPT For Law",3000];
@@ -170,7 +103,7 @@ const LLBGPT = () => {
                     <input onChange={handleInputChange} placeholder='Type And Press Enter' onKeyUp={handleInputChange} className='p-4 rounded-md' type="text" />
                 </div>
                 <div className='-mt-[5px]'>
-                    <button onClick={handleSubmit} type='submit' className={`${(!query || isLoading) ? "opacity-30" : "opacity-100"}  flex p-3 items-center bg-white bg-opacity-10 hover:bg-opacity-100 hover:text-black text-white rounded-md duration-300`}>{isLoading? "Loading.." : "Submit"}</button>
+                    <button onClick={handleviaFetch} type='submit' className={`${(!query || isLoading) ? "opacity-30" : "opacity-100"}  flex p-3 items-center bg-white bg-opacity-10 hover:bg-opacity-100 hover:text-black text-white rounded-md duration-300`}>{isLoading? "Loading.." : "Submit"}</button>
                 </div>
             </div>
             
